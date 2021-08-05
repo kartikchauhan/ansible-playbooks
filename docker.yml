@@ -1,0 +1,17 @@
+- name: Setup docker, docker-compose & git
+  hosts: all
+  tasks:
+      - name: Install docker
+        become: true
+        shell: |
+            amazon-linux-extras install -y docker
+            service docker start
+            usermod -a -G docker ec2-user
+
+      - name: Autostart docker
+        become: true
+        command: "chkconfig docker on"
+
+      - name: Install git
+        become: true
+        command: "yum install -y git"
