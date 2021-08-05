@@ -1,0 +1,7 @@
+- name: Setup bashrc
+  hosts: all
+  tasks:
+      - name: Copy .bashrc
+        copy:
+            src: ~/.bashrc
+            dest: ~/.bashrc
