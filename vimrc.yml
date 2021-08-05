@@ -1,0 +1,20 @@
+- name: Install vim modules
+  hosts: all
+  tasks:
+      - name: Copy vimrc
+        copy:
+            src: ~/.vimrc
+            dest: ~/.vimrc
+
+      - name: Create directory for vim bundle
+        file:
+            path: /home/$USER/.vim/bundle
+            state: directory
+
+      - name: Clone vim bundle repo
+        command: "git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim"
+
+
+      - name: Install modules
+        command: "vim +PluginInstall +qall"
+
